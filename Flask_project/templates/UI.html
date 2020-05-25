@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>大数据课程项目</title>
+    <script>
+      function init() {
+
+          var xmlhttp = new XMLHttpRequest();
+          xmlhttp.onreadystatechange=function () {
+          if(xmlhttp.readyState==4){
+              if(xmlhttp.status == 200)
+                {
+                    var str=xmlhttp.responseText;
+                    var data=eval('('+str+')');
+                    //alert(data['0'])
+                    document.getElementById('text1').innerHTML = data['0']
+
+                }
+                   // alert("error");
+            }
+            else
+            {
+               // alert("data receive error");
+                // document.getElementById("myDiv").innerHTML="response error"
+            }
+        }
+        xmlhttp.open("POST","http://localhost:5000/index_paihang",true);
+        //xmlhttp.send();
+          xmlhttp.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
+          //这句话可以发送post数据，没有此句post的内容无法传递
+          //  xmlhttp.send("name=fengyujie");
+         xmlhttp.send();
+
+
+      }
+    </script>
+</head>
+
+
+<body onload="init()">
+    <h1>项目测试。。</h1>
+    <h1>Hello {{ name }}!</h1>
+    <p class="white" id='text1' style="font-size: 40px;color:#665bff">替换掉这里</p>
+</body>
+</html>
